@@ -7,40 +7,47 @@
 <label for="name">Name:</label>
 <input type="text" id="name" name="name" @bind="@player1.Name" @onblur="LoadCharacterAsync">
 <br>
+<br>
 
 <label for="str">Strength:</label>
+<br>
 <input type="text" id="str" name="str" @bind="@player1.Strength" @onblur="LoadCharacterAsync">
-<input type="text" id="strMod" name="strMod" @bind="@player1.StrMod" readonly>
+<input type="text" id="strMod" name="strMod" @bind="@player1.StrMod" maxlength="2" size="1" readonly>
 <br>
 
 <label for="dex">Dexterity:</label>
+<br>
 <input type="text" id="dex" name="dex" @bind="@player1.Dexterity" @onblur="LoadCharacterAsync">
-<input type="text" id="dexMod" name="dexMod" @bind="@player1.DexMod" readonly>
+<input type="text" id="dexMod" name="dexMod" @bind="@player1.DexMod" maxlength="2" size="1" readonly>
 <br>
 
 <label for="con">Constitution:</label>
+<br>
 <input type="text" id="con" name="con" @bind="@player1.Constitution" @onblur="LoadCharacterAsync">
-<input type="text" id="conMod" name="conMod" @bind="@player1.ConMod" readonly>
+<input type="text" id="conMod" name="conMod" @bind="@player1.ConMod" maxlength="2" size="1" readonly>
 <br>
 
 <label for="int">Intelligence:</label>
+<br>
 <input type="text" id="int" name="int" @bind="@player1.Intelligence" @onblur="LoadCharacterAsync">
-<input type="text" id="dexMod" name="dexMod" @bind="@player1.IntMod" readonly>
+<input type="text" id="dexMod" name="dexMod" @bind="@player1.IntMod" maxlength="2" size="1" readonly>
 <br>
 
 <label for="wis">Wisdom:</label>
+<br>
 <input type="text" id="wis" name="wis" @bind="@player1.Wisdom" @onblur="LoadCharacterAsync">
-<input type="text" id="wisMod" name="wisMod" @bind="@player1.WisMod" readonly>
+<input type="text" id="wisMod" name="wisMod" @bind="@player1.WisMod" maxlength="2" size="1" readonly>
 <br>
 
 <label for="cha">Charisma:</label>
+<br>
 <input type="text" id="cha" name="cha" @bind="@player1.Charisma" @onblur="LoadCharacterAsync">
-<input type="text" id="chaMod" name="chaMod" @bind="@player1.ChaMod" readonly>
+<input type="text" id="chaMod" name="chaMod" @bind="@player1.ChaMod" maxlength="2" size="1" readonly>
 <br>
 
 @* upload file in the future <input type="file"/>*@
-<button class="btn btn-primary" @onclick="LoadCharacter">Load Character</button>
 <br>
+<button class="btn btn-primary" @onclick="LoadCharacter">Load Character</button>
 <br>
 
 @code
