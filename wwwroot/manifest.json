@@ -1,6 +1,6 @@
 {
-  "name": "5eDNDCalculator",
-  "short_name": "5eDNDCalculator",
+  "name": "DnDCharacterCalculator",
+  "short_name": "DnDCharacterCalculator",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
