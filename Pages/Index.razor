@@ -74,7 +74,9 @@
     //Loads a method asyncronously 
     private async Task LoadCharacterAsync(FocusEventArgs e)
     {
+        await Task.Delay(500);
         LoadCharacter();
+
     }
 
 }
