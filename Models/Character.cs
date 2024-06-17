@@ -49,6 +49,7 @@ namespace DnDCharacterCalculator.Models
             if (level == 1)
             {
                 //calculatedHealth = 5 + Character.ChaMod;
+                //test comment
             }
        
             return 10;
