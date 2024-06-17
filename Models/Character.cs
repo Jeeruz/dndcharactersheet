@@ -29,17 +29,17 @@ namespace DnDCharacterCalculator.Models
         public int Wisdom { get; set; }
         public int WisMod { get; set; }
         public int Charisma { get; set; }
-        public int ChaMod{ get; set; }
+        public int ChaMod { get; set; }
         public int MaxHealth { get; set; }
         public int HitDie { get; set; }
 
         private static int Modifier(int stat)
         {
-            int mod = ((stat - 10) / 2); 
+            int mod = ((stat - 10) / 2);
             return mod;
         }
 
-        private static int CalculatedClassHealth(int level,string charclass)
+        private static int CalculatedClassHealth(int level, string charclass)
         {
             //Hit Points at 1st Levei: 8 + your Constitution modifier
             //Hit Points at Higher Leveis: 1d8(or 5) + your Constitution 
@@ -51,14 +51,14 @@ namespace DnDCharacterCalculator.Models
                 //calculatedHealth = 5 + Character.ChaMod;
                 //test comment
             }
-       
+
             return 10;
         }
 
         private static int CalculatedMaxHealth(int level, string character)
         {
             //This will be used to calculate max health if player has multiclasses
-       
+
             return 10;
         }
 
