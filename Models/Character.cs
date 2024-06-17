@@ -13,6 +13,11 @@ namespace DnDCharacterCalculator.Models
     {
         public string Name { get; set; }
         public int Level { get; set; }
+        public string CharClass { get; set; }
+        public int Level2 { get; set; }
+        public string CharClass2 { get; set; }
+        public int Level3 { get; set; }
+        public int Class3 { get; set; }
         public int Strength { get; set; }
         public int StrMod { get; set; }
         public int Dexterity { get; set; }
@@ -34,18 +39,36 @@ namespace DnDCharacterCalculator.Models
             return mod;
         }
 
-        private static int Health()
+        private static int CalculatedClassHealth(int level,string charclass)
         {
-            //Sources:
-            //https://www.omnicalculator.com/other/hit-points
+            //Hit Points at 1st Levei: 8 + your Constitution modifier
+            //Hit Points at Higher Leveis: 1d8(or 5) + your Constitution 
+            //    modifier per clerie levei after 1st
+            int calculatedHealth = 0;
 
+            if (level == 1)
+            {
+                //calculatedHealth = 5 + Character.ChaMod;
+            }
+       
+            return 10;
+        }
+
+        private static int CalculatedMaxHealth(int level, string character)
+        {
+            //This will be used to calculate max health if player has multiclasses
+       
             return 10;
         }
 
         //This is a contructor of player if it received name parameter
-        public Character(string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
+        public Character(string name, int level, string charclass, int level2, string charclass2, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
         {
             Name = name;
+            Level = level;
+            CharClass = charclass;
+            Level2 = level2;
+            CharClass2 = charclass2;
             Strength = strength;
             StrMod = Modifier(strength);
             Dexterity = dexterity;

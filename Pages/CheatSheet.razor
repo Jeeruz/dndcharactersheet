@@ -35,11 +35,11 @@ else
     </table>
 }
 @code {
-    private WeatherForecast[] forecasts;
+    List<WeatherForecast> forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("../../Data/weather.json");
+        forecasts = await Http.GetFromJsonAsync<List<WeatherForecast>>("../../Data/weather.json");
     }
 
     public class WeatherForecast

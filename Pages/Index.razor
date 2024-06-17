@@ -1,5 +1,7 @@
 ﻿@page "/"
 @using DnDCharacterCalculator.Models
+@inject HttpClient Http
+@inject IJSRuntime JsRuntime
 
 <h5>Hello, @player1.Name!</h5>
 
@@ -7,17 +9,45 @@
 <br>
 <input type="text" id="name" name="name" @bind="@player1.Name" @onblur="LoadCharacterAsync">
 <br>
-
-<label for="class">Class:</label>
-<br>
-<input type="text" id="level" name="level" maxlength="2" size="1">
-<input type="text" id="class" name="class">
 <br>
 
-<label for="class">Multi Class:</label>
-<br>
-<input type="text" id="level2" name="level2" maxlength="2" size="1">
-<input type="text" id="class2" name="class2">
+@if (classOptionList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <label for="charclass">Class:</label>
+    <br>
+    <input type="text" id="level" name="level" maxlength="2" size="1" @bind="@player1.Level" @onblur="LoadCharacterAsync">
+    <select name="charclass" id="charclass" @bind="@player1.CharClass" @onblur="LoadCharacterAsync">
+        @foreach (var c in classOptionList)
+        {
+            <option value="@c.Name">@c.Name</option>
+        }
+    </select>
+}
+
+@if (player1.CharClass == "Select Class" || player1.CharClass == "")
+{
+    <br>
+    <br>
+    <p><em>Select first class to unlock multiclass</em></p>
+}
+else
+{
+    <br>
+    <br>
+    <label for="charclass2">Multi Class:</label>
+    <br>
+    <input type="text" id="level2" name="level2" maxlength="2" size="1" @bind="@player1.Level2" @onblur="LoadCharacterAsync">
+    <select name="charclass2" id="charclass2" @bind="@player1.CharClass2" @onblur="LoadCharacterAsync">
+        @foreach (var c in classOptionList)
+        {
+            <option value="@c.Name">@c.Name</option>
+        }
+    </select>
+}
 <br>
 <br>
 
@@ -57,20 +87,33 @@
 <input type="text" id="chaMod" name="chaMod" @bind="@player1.ChaMod" maxlength="2" size="1" readonly>
 <br>
 
-@* upload file in the future <input type="file"/>*@
+@* upload json file of character in the future <input type="file"/>*@
 <br>
 <button class="btn btn-primary" @onclick="LoadCharacter">Load Character</button>
 <br>
 
 @code
 {
+    //My breakpoint in blazor
+    //JsRuntime.InvokeVoidAsync("console.log", message)
+
     //Declaration
-    private Character player1;
+
+    //Declare class parameter player
+    public Character player1;
+
+    //Declare class clss list instance
+    List<Class> classOptionList = new List<Class>();
 
     //Initilization
-    protected override void OnInitialized()
+
+    //Inializes page onload
+    protected override async Task OnInitializedAsync()
     {
-        player1 = new Character("You", 10, 10, 10, 10, 10, 10);
+        //Create new instance of player1 on load
+        player1 = new Character("You", 0, "", 0, "", 10, 10, 10, 10, 10, 10);
+        //Fill up class list instance from a json file
+        classOptionList = await Http.GetFromJsonAsync<List<Class>>("../../Data/classes.json");
     }
 
     //Page Methods
@@ -80,25 +123,24 @@
     {
         player1 = new Character
         (
-            @player1.Name
-           , @player1.Strength
-           , @player1.Dexterity
-           , @player1.Constitution
-           , @player1.Intelligence
-           , @player1.Wisdom
-           , @player1.Charisma
+            player1.Name
+           , player1.Level
+           , player1.CharClass
+           , player1.Level2
+           , player1.CharClass2
+           , player1.Strength
+           , player1.Dexterity
+           , player1.Constitution
+           , player1.Intelligence
+           , player1.Wisdom
+           , player1.Charisma
         );
     }
 
-    //Loads a method asyncronously
+    //Loads a method asyncronously when triggered from a button
     private async Task LoadCharacterAsync(FocusEventArgs e)
     {
         await Task.Delay(500);
         LoadCharacter();
-
     }
-
 }
-
-
-
